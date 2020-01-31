@@ -78,6 +78,9 @@ jobs:
                 command: docker pull jdlk7/firestore-emulator && docker run -d --name gcloud-firestore -p 8006:9090 jdlk7/firestore-emulator
 
       - run: ../../.circleci/build-test-deploy.sh << parameters.test >>
+      - store_artifacts:
+          path: .nyc_output
+          destination: coverage
 
   deploy-module:
     executor: nodejs
